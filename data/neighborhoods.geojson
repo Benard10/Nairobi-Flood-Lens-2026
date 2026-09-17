@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "neighborhoods",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Mathare Valley", "lat": -1.2588, "lon": 36.8572, "zone": "Nairobi North Corridor" }, "geometry": { "type": "Point", "coordinates": [ 36.8572, -1.2588 ] } },
+{ "type": "Feature", "properties": { "name": "Korogocho", "lat": -1.2515, "lon": 36.8925, "zone": "Nairobi North Corridor" }, "geometry": { "type": "Point", "coordinates": [ 36.8925, -1.2515 ] } },
+{ "type": "Feature", "properties": { "name": "Gikomba Market", "lat": -1.2854, "lon": 36.8378, "zone": "Nairobi Central Basin" }, "geometry": { "type": "Point", "coordinates": [ 36.8378, -1.2854 ] } },
+{ "type": "Feature", "properties": { "name": "South C", "lat": -1.3211, "lon": 36.8286, "zone": "Nairobi South Plains" }, "geometry": { "type": "Point", "coordinates": [ 36.8286, -1.3211 ] } },
+{ "type": "Feature", "properties": { "name": "South B", "lat": -1.3145, "lon": 36.8452, "zone": "Nairobi South Plains" }, "geometry": { "type": "Point", "coordinates": [ 36.8452, -1.3145 ] } },
+{ "type": "Feature", "properties": { "name": "Kibera", "lat": -1.3133, "lon": 36.7885, "zone": "Nairobi South Plains" }, "geometry": { "type": "Point", "coordinates": [ 36.7885, -1.3133 ] } }
+]
+}

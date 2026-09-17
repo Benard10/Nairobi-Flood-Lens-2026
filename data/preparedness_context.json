@@ -1,0 +1,214 @@
+{
+  "checked_on": "2026-09-16",
+  "selection": "Our study focuses on Mathare Valley, Korogocho, Gikomba Market, South C, South B and Kibera. Around each selected point, we draw a circle extending 1 km in every direction to compare local conditions. Five areas have mapped rivers or drains. For South C, we also trace the land that drains towards a selected outlet. The project chose these locations; the circles are study boundaries, not predicted flood boundaries.",
+  "drivers": "Water can gather on low ground and near rivers. Past rainfall and the way land is used also affect the concern score. Places with more buildings receive greater inspection priority. Nairobi research points to paved ground, fewer natural spaces to hold water, and drains that are blocked or too small. Visits are still needed to check drains and culverts, the channels that carry water under roads.",
+  "sources": {
+    "relief2024": {
+      "name": "Citizen Digital · flood relief, 29 April 2024",
+      "url": "https://citizen.digital/news/shofco-leads-food-distribution-in-nairobi-slums-hit-by-floods-n341248",
+      "author": "Citizen Reporter"
+    },
+    "roads2024": {
+      "name": "Citizen Digital · 21 April 2024",
+      "url": "https://citizen.digital/article/nairobi-the-green-city-under-the-sun-marooned-by-floods-n340750",
+      "author": "Fridah Naliaka"
+    },
+    "roads2026": {
+      "name": "Citizen Digital · 1 May 2026",
+      "url": "https://citizen.digital/article/flooding-disrupts-traffic-on-mombasa-road-motorists-urged-to-seek-alternative-routes-n381861",
+      "author": "Joseph Muia"
+    },
+    "county2024": {
+      "name": "The Star · county hotspot list, 24 April 2024",
+      "url": "https://www.the-star.co.ke/news/2024-04-24-floods-hot-spots-nairobi-county-lists-areas-residents-should-vacate"
+    },
+    "wri": {
+      "name": "WRI · Nairobi flood research, 27 July 2026",
+      "url": "https://africa.wri.org/research/flooding-nairobis-informal-settlements",
+      "author": "Charity Mumbi Mwangi and colleagues"
+    },
+    "climate2023": {
+      "name": "Kenya Met · State of the Climate 2023",
+      "url": "https://meteo.go.ke/documents/802/SoC_Kenya_2023_1.pdf"
+    },
+    "history1997": {
+      "name": "World Bank · Kenya Country Environmental Analysis",
+      "url": "https://documents1.worldbank.org/curated/en/939861592515485722/pdf/Kenya-Country-Environmental-Analysis.pdf"
+    },
+    "history2015": {
+      "name": "British Academy · El Niño, sanitation and Mathare",
+      "url": "https://academic.oup.com/british-academy-scholarship-online/book/45906/chapter/404312074"
+    },
+    "met": {
+      "name": "Kenya Met · OND forecast, issued 31 August 2026",
+      "url": "https://meteo.go.ke/documents/4790/OND_2026__Seasonal_Forecast.pdf"
+    },
+    "roadsMarch2026": {
+      "name": "Parliament of Kenya · Senate Hansard, 10 March 2026",
+      "url": "https://www.parliament.go.ke/sites/default/files/2026-03/Tuesday%2C%2010th%20March%2C%202026%20at%202.30%20p.m..pdf"
+    }
+  },
+  "areas": [
+    {
+      "name": "Mathare Valley",
+      "reason": "Look at low ground and buildings along the Mathare River. Check river crossings and safe access near buildings marked red.",
+      "history": "In April 2024, the county named Mathare North and Gumba Bridge among places of flood concern. The report covers the wider area and does not locate each incident within our study boundary.",
+      "source": "county2024"
+    },
+    {
+      "name": "Korogocho",
+      "reason": "Look at the Mathare–Nairobi river network and nearby buildings. Visit places where rivers meet and where people cross them.",
+      "history": "An April 2024 report described food assistance for families affected by floods in Korogocho, Kibera and Mathare. Our marker shows the study centre; the report does not give an exact flood location there.",
+      "source": "relief2024"
+    },
+    {
+      "name": "Gikomba Market",
+      "reason": "Check trading places and delivery routes along the Nairobi River. The higher concern scores near the river make these places worth visiting first.",
+      "history": "The county's April 2024 hotspot list cautioned traders along the river in Gikomba.",
+      "source": "county2024"
+    },
+    {
+      "name": "South C",
+      "reason": "Follow the land draining towards South C, including ground near Wilson Airport. Check whether the selected outlet matches a drain or culvert on the ground.",
+      "history": "Flooding in South C was reported on 21 April 2024. The report names the estate but does not map the flooded land.",
+      "source": "roads2024"
+    },
+    {
+      "name": "South B",
+      "reason": "Look at buildings near the Ngong River, where a large proportion need closer review. Check crossings and routes into the estate before heavy rain.",
+      "history": "The Senate recorded flood impacts in South B and South C after the 6 March 2026 rains. Our study marker shows the review area, rather than a particular damaged building.",
+      "source": "roadsMarch2026"
+    },
+    {
+      "name": "Kibera",
+      "reason": "Look at the Motoine–Ngong drainage network. Kibera has the most buildings needing review in this study. Check footbridges and routes to schools, clinics and other services.",
+      "history": "The April 2024 county list identified river-side locations including Gatwekera and Soweto West. The marker is our study centre, not a precise incident location.",
+      "source": "county2024"
+    }
+  ],
+  "history": [
+    {
+      "period": "1997–1998 · El Niño",
+      "title": "Widespread damage across Kenya",
+      "detail": "Floods damaged infrastructure, affected health and caused crop losses across Kenya. This season helps explain why preparation matters. The national report does not give losses for each of our six study areas.",
+      "source": "history1997"
+    },
+    {
+      "period": "2015 · El Niño",
+      "title": "Mathare: weather, sanitation and preparedness",
+      "detail": "Research describes how memories of the 1997 floods shaped expectations of the 2015 rains in Mathare. It connects flooding with sanitation and disease concerns. We do not have matching loss records for all six study areas.",
+      "source": "history2015"
+    },
+    {
+      "period": "October–December 2023 · El Niño",
+      "title": "Heavy rain and disruption across Kenya",
+      "detail": "Kenya Met reported floods, damaged infrastructure and health concerns across the country in 2023. Its yearly health figures include Nairobi, but do not show the effects of a single storm or give totals for our study areas.",
+      "source": "climate2023"
+    },
+    {
+      "period": "March–May 2024 · long rains",
+      "title": "Homes, access and livelihoods disrupted",
+      "detail": "Nairobi research describes people forced from their homes and damage to houses, roads and bridges. Flooding also interrupted sanitation, schooling, travel and work. The research includes household surveys in Kibera, Mathare and Mukuru Viwandani. These floods happened during the 2024 long rains, after the 2023 short rains.",
+      "source": "wri"
+    },
+    {
+      "period": "1 May 2026 · reported flooding",
+      "title": "Recurring road disruption",
+      "detail": "Reports described a submerged lorry near City Cabanas on Mombasa Road and a vehicle rescue near T-Mall on Lang’ata Road. These newer incidents reinforce the need to monitor these access points.",
+      "source": "roads2026"
+    }
+  ],
+  "rainfall": {
+    "title": "Kenya Met expects a wetter short-rains season",
+    "detail": "Kenya Met expects above-average rainfall in Nairobi from October to December 2026. In its bulletin, above-average means more than 125% of the long-term average, or more than a quarter above the usual amount. It does not give an exact total in millimetres for Nairobi or these neighbourhoods. The bulletin calls 21–50 mm in 24 hours heavy rain and more than 50 mm very heavy rain. These explain the terms; they are not rainfall amounts predicted for our marked locations.",
+    "action": "Prepare for water gathering on low ground and rivers possibly overflowing during heavy rain. Follow Kenya Met updates for the coming days and current road notices when planning journeys. Diversions reported during past floods may no longer apply.",
+    "source": "met"
+  },
+  "watch_points": [
+    {
+      "id": "tmall",
+      "name": "T-Mall / Lang’ata Road",
+      "coordinates": [
+        36.81657,
+        -1.31241
+      ],
+      "kind": "Reported road flooding",
+      "date": "2024-04-21; 2026-05-01",
+      "detail": "Flooding at the T-Mall roundabout was reported in April 2024; a vehicle rescue near T-Mall was reported in May 2026. Check ponding and junction drainage during heavy rainfall.",
+      "source": "roads2026",
+      "additional_source": "roads2024",
+      "precision": "The marker is near the landmark. The exact flooded road section has not been mapped.",
+      "coordinate_source": "https://kenya.worldplaces.me/review/149131076-t-mall-langata-road.html"
+    },
+    {
+      "id": "cabanas",
+      "name": "Mombasa Road / City Cabanas",
+      "coordinates": [
+        36.88872,
+        -1.33039
+      ],
+      "kind": "Reported road flooding",
+      "date": "2026-05-01",
+      "detail": "A report described a submerged lorry near City Cabanas and severe traffic disruption. Check nearby drains and low road sections. The report does not show flood conditions along the whole of Mombasa Road.",
+      "source": "roads2026",
+      "precision": "The marker is near City Cabanas. The exact location of the lorry and flooded road section has not been mapped. Outside the six study buffers.",
+      "coordinate_source": "https://kenya.worldplaces.me/places-in-nairobi/41493909-city-cabanas.html"
+    },
+    {
+      "id": "mbagathi",
+      "name": "Mbagathi Way / Highrise",
+      "coordinates": [
+        36.80591,
+        -1.31581
+      ],
+      "kind": "Reported road flooding",
+      "date": "2026-03-06",
+      "detail": "Mbagathi Way was listed among roads made impassable by the March 2026 floods in the Senate record. Check low sections, crossings and drainage along this route.",
+      "source": "roadsMarch2026",
+      "precision": "The marker is near a landmark on this road. The report does not identify the exact flooded section.",
+      "coordinate_source": "https://kenya.worldplaces.me/places-in-nairobi/56296883-nyayo-highrise-estate-mbagathi-way-nairobi.html"
+    },
+    {
+      "id": "jogoo",
+      "name": "Jogoo Road / Burma Market",
+      "coordinates": [
+        36.84257,
+        -1.29248
+      ],
+      "kind": "Reported road flooding",
+      "date": "2026-03-06",
+      "detail": "Jogoo Road was listed among roads made impassable by the March 2026 floods in the Senate record. Check low sections, crossings and drainage along this route.",
+      "source": "roadsMarch2026",
+      "precision": "The marker is near a landmark on this road. The report does not identify the exact flooded section.",
+      "coordinate_source": "https://kenya.worldplaces.me/review/207596973-burma-market-jogoo-road.html"
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise Road / South B access",
+      "coordinates": [
+        36.85138,
+        -1.31287
+      ],
+      "kind": "Reported road flooding",
+      "date": "2026-03-06",
+      "detail": "Enterprise Road was listed among roads made impassable by the March 2026 floods in the Senate record. Check low sections, crossings and drainage along this route.",
+      "source": "roadsMarch2026",
+      "precision": "The marker is near a landmark on this road. The report does not identify the exact flooded section.",
+      "coordinate_source": "https://kenya.worldplaces.me/review/93070979-cutez-vivianah-s-restaurant-and-catering-services.html"
+    },
+    {
+      "id": "lungalunga",
+      "name": "Lunga Lunga Road / Industrial Area",
+      "coordinates": [
+        36.86203,
+        -1.31633
+      ],
+      "kind": "Reported road flooding",
+      "date": "2026-03-06",
+      "detail": "Lunga Lunga Road was listed among roads made impassable by the March 2026 floods in the Senate record. Check low sections, crossings and drainage along this route.",
+      "source": "roadsMarch2026",
+      "precision": "The marker is near a landmark on this road. The report does not identify the exact flooded section.",
+      "coordinate_source": "https://kenya.worldplaces.me/review/184918793-riva-petroleum.html"
+    }
+  ]
+}

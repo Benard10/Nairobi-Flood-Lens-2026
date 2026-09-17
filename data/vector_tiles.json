@@ -1,0 +1,53 @@
+{
+  "buildings": {
+    "tiles": "data/tiles/buildings-0f3d0ef64ccc1ee1/{z}/{x}/{y}.pbf",
+    "source_layer": "buildings",
+    "minzoom": 10,
+    "maxzoom": 15,
+    "bounds": [
+      36.7795321,
+      -1.3300828,
+      36.9008445,
+      -1.2423201
+    ],
+    "feature_count": 22417,
+    "source_bytes": 16458024,
+    "tile_count": 161,
+    "largest_tile_bytes": 2658131,
+    "total_tile_bytes": 16891382
+  },
+  "analysis-rivers": {
+    "tiles": "data/tiles/analysis-rivers-67d55638bc7f24a6/{z}/{x}/{y}.pbf",
+    "source_layer": "analysis-rivers",
+    "minzoom": 10,
+    "maxzoom": 15,
+    "bounds": [
+      36.651165,
+      -1.449999999993814,
+      37.10999999997003,
+      -1.150005314312904
+    ],
+    "feature_count": 870,
+    "source_bytes": 1396909,
+    "tile_count": 1616,
+    "largest_tile_bytes": 89570,
+    "total_tile_bytes": 1466953
+  },
+  "buffer-intervals": {
+    "tiles": "data/tiles/buffer-intervals-8f1c130f6654534a/{z}/{x}/{y}.pbf",
+    "source_layer": "buffer-intervals",
+    "minzoom": 10,
+    "maxzoom": 15,
+    "bounds": [
+      36.77957263837012,
+      -1.321792804180904,
+      36.90068978780082,
+      -1.242471259793723
+    ],
+    "feature_count": 15,
+    "source_bytes": 1205133,
+    "tile_count": 149,
+    "largest_tile_bytes": 17751,
+    "total_tile_bytes": 252406
+  }
+}

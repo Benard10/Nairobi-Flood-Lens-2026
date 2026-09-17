@@ -1,0 +1,722 @@
+{
+  "generated_at": "2026-09-16T19:00:47.503587+00:00",
+  "generated_from": "Nairobi flood screening outputs using reviewed river and dam layers",
+  "headline": {
+    "inspection_areas": 6,
+    "highest_mean_hazard": 0.6101933121681213,
+    "high_hazard_area_ha": 674.91,
+    "candidate_corridor_area_ha": 234.0,
+    "mapped_dams": 376,
+    "analysis_rivers": 870
+  },
+  "south_c": {
+    "catchment_area_km2": 3.9933,
+    "mean_hazard_score": 0.5733882784843445,
+    "high_hazard_area_pct": 35.587108406581024,
+    "wilson_airport_upstream": true,
+    "outlet_needs_review": true
+  },
+  "neighborhoods": [
+    {
+      "name": "South B",
+      "zone": "Nairobi South Plains",
+      "hazard_score_mean": 0.5970716476,
+      "hazard_score_max": 0.9404707551,
+      "planning_priority_score_mean": 0.5578567982,
+      "planning_priority_score_max": 0.9342009425,
+      "built_density_mean": 0.8643112183,
+      "built_density_max": 1.0,
+      "high_hazard_area_ha": 132.93,
+      "high_hazard_built_area_ha": 132.93
+    },
+    {
+      "name": "South C",
+      "zone": "Nairobi South Plains",
+      "hazard_score_mean": 0.6101933122,
+      "hazard_score_max": 0.9336995482,
+      "planning_priority_score_mean": 0.5523257852,
+      "planning_priority_score_max": 0.8693780303,
+      "built_density_mean": 0.8059331775,
+      "built_density_max": 1.0,
+      "high_hazard_area_ha": 162.81,
+      "high_hazard_built_area_ha": 162.81
+    },
+    {
+      "name": "Gikomba Market",
+      "zone": "Nairobi Central Basin",
+      "hazard_score_mean": 0.5891312361,
+      "hazard_score_max": 0.9468564391,
+      "planning_priority_score_mean": 0.5395466089,
+      "planning_priority_score_max": 0.9312485456,
+      "built_density_mean": 0.8250588179,
+      "built_density_max": 1.0,
+      "high_hazard_area_ha": 119.61,
+      "high_hazard_built_area_ha": 119.61
+    },
+    {
+      "name": "Kibera",
+      "zone": "Nairobi South Plains",
+      "hazard_score_mean": 0.5768998861,
+      "hazard_score_max": 0.959387362,
+      "planning_priority_score_mean": 0.5153955817,
+      "planning_priority_score_max": 0.9072384238,
+      "built_density_mean": 0.7745504379,
+      "built_density_max": 1.0,
+      "high_hazard_area_ha": 116.28,
+      "high_hazard_built_area_ha": 115.11
+    },
+    {
+      "name": "Korogocho",
+      "zone": "Nairobi North Corridor",
+      "hazard_score_mean": 0.5638763905,
+      "hazard_score_max": 0.9137240052,
+      "planning_priority_score_mean": 0.4995025694,
+      "planning_priority_score_max": 0.8510643244,
+      "built_density_mean": 0.7605749965,
+      "built_density_max": 1.0,
+      "high_hazard_area_ha": 60.03,
+      "high_hazard_built_area_ha": 59.94
+    },
+    {
+      "name": "Mathare Valley",
+      "zone": "Nairobi North Corridor",
+      "hazard_score_mean": 0.556201756,
+      "hazard_score_max": 0.9392482638,
+      "planning_priority_score_mean": 0.4653984308,
+      "planning_priority_score_max": 0.9321642518,
+      "built_density_mean": 0.6548386216,
+      "built_density_max": 1.0,
+      "high_hazard_area_ha": 83.25,
+      "high_hazard_built_area_ha": 82.44
+    }
+  ],
+  "corridors": [
+    {
+      "name": "South B",
+      "zone": "Nairobi South Plains",
+      "river_names": "; Ngong River",
+      "waterway_types": "river; stream",
+      "mapped_reach_length_km": 3.7575997252,
+      "corridor_area_ha": 93.78,
+      "candidate_affected_area_ha": 63.09,
+      "candidate_affected_built_area_ha": 63.09,
+      "corridor_hazard_mean": 0.63465482,
+      "corridor_hazard_max": 0.9404707551
+    },
+    {
+      "name": "Kibera",
+      "zone": "Nairobi South Plains",
+      "river_names": "; Motoine River; Ngong river; drainage system; waterscape",
+      "waterway_types": "drain; river; stream",
+      "mapped_reach_length_km": 9.6555825672,
+      "corridor_area_ha": 154.89,
+      "candidate_affected_area_ha": 59.76,
+      "candidate_affected_built_area_ha": 59.04,
+      "corridor_hazard_mean": 0.6075559855,
+      "corridor_hazard_max": 0.959387362
+    },
+    {
+      "name": "Korogocho",
+      "zone": "Nairobi North Corridor",
+      "river_names": "; Mathare River; Nairobi River",
+      "waterway_types": "river; stream",
+      "mapped_reach_length_km": 6.2392532031,
+      "corridor_area_ha": 135.54,
+      "candidate_affected_area_ha": 38.43,
+      "candidate_affected_built_area_ha": 38.43,
+      "corridor_hazard_mean": 0.5835934281,
+      "corridor_hazard_max": 0.9137240052
+    },
+    {
+      "name": "Mathare Valley",
+      "zone": "Nairobi North Corridor",
+      "river_names": "; Mathare River",
+      "waterway_types": "drain; stream",
+      "mapped_reach_length_km": 11.447415556,
+      "corridor_area_ha": 111.69,
+      "candidate_affected_area_ha": 37.71,
+      "candidate_affected_built_area_ha": 37.71,
+      "corridor_hazard_mean": 0.6034575701,
+      "corridor_hazard_max": 0.9392482638
+    },
+    {
+      "name": "Gikomba Market",
+      "zone": "Nairobi Central Basin",
+      "river_names": "; Nairobi River",
+      "waterway_types": "river; stream",
+      "mapped_reach_length_km": 2.3588499143,
+      "corridor_area_ha": 56.34,
+      "candidate_affected_area_ha": 35.01,
+      "candidate_affected_built_area_ha": 35.01,
+      "corridor_hazard_mean": 0.6482735276,
+      "corridor_hazard_max": 0.9468564391
+    },
+    {
+      "name": "South C",
+      "zone": "Nairobi South Plains",
+      "river_names": null,
+      "waterway_types": null,
+      "mapped_reach_length_km": 0.0,
+      "corridor_area_ha": 0.0,
+      "candidate_affected_area_ha": 0.0,
+      "candidate_affected_built_area_ha": 0.0,
+      "corridor_hazard_mean": null,
+      "corridor_hazard_max": null
+    }
+  ],
+  "buffer_buildings": [
+    {
+      "inspection_area": "Gikomba Market",
+      "zone": "Nairobi Central Basin",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 0.0,
+      "distance_to_m": 31.0,
+      "interval_label": "0-31 m",
+      "interval_area_ha": 14.2137738568,
+      "osm_buildings_in_buffer": 150,
+      "osm_buildings_potentially_affected": 148,
+      "potentially_affected_pct": 98.6666666667,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Gikomba Market",
+      "zone": "Nairobi Central Basin",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 31.0,
+      "distance_to_m": 62.5,
+      "interval_label": "31-62.5 m",
+      "interval_area_ha": 14.2535881062,
+      "osm_buildings_in_buffer": 172,
+      "osm_buildings_potentially_affected": 146,
+      "potentially_affected_pct": 84.8837209302,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Gikomba Market",
+      "zone": "Nairobi Central Basin",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 62.5,
+      "distance_to_m": 125.0,
+      "interval_label": "62.5-125 m",
+      "interval_area_ha": 27.7021407365,
+      "osm_buildings_in_buffer": 458,
+      "osm_buildings_potentially_affected": 283,
+      "potentially_affected_pct": 61.7903930131,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Kibera",
+      "zone": "Nairobi South Plains",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 0.0,
+      "distance_to_m": 31.0,
+      "interval_label": "0-31 m",
+      "interval_area_ha": 50.2352580732,
+      "osm_buildings_in_buffer": 2211,
+      "osm_buildings_potentially_affected": 1976,
+      "potentially_affected_pct": 89.3713251922,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Kibera",
+      "zone": "Nairobi South Plains",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 31.0,
+      "distance_to_m": 62.5,
+      "interval_label": "31-62.5 m",
+      "interval_area_ha": 39.6192007225,
+      "osm_buildings_in_buffer": 1492,
+      "osm_buildings_potentially_affected": 737,
+      "potentially_affected_pct": 49.3967828418,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Kibera",
+      "zone": "Nairobi South Plains",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 62.5,
+      "distance_to_m": 125.0,
+      "interval_label": "62.5-125 m",
+      "interval_area_ha": 64.5833274122,
+      "osm_buildings_in_buffer": 2350,
+      "osm_buildings_potentially_affected": 181,
+      "potentially_affected_pct": 7.7021276596,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Korogocho",
+      "zone": "Nairobi North Corridor",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 0.0,
+      "distance_to_m": 31.0,
+      "interval_label": "0-31 m",
+      "interval_area_ha": 37.2874946724,
+      "osm_buildings_in_buffer": 573,
+      "osm_buildings_potentially_affected": 343,
+      "potentially_affected_pct": 59.8603839442,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Korogocho",
+      "zone": "Nairobi North Corridor",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 31.0,
+      "distance_to_m": 62.5,
+      "interval_label": "31-62.5 m",
+      "interval_area_ha": 35.2394857834,
+      "osm_buildings_in_buffer": 2102,
+      "osm_buildings_potentially_affected": 634,
+      "potentially_affected_pct": 30.1617507136,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Korogocho",
+      "zone": "Nairobi North Corridor",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 62.5,
+      "distance_to_m": 125.0,
+      "interval_label": "62.5-125 m",
+      "interval_area_ha": 63.0392440387,
+      "osm_buildings_in_buffer": 3766,
+      "osm_buildings_potentially_affected": 369,
+      "potentially_affected_pct": 9.7981943707,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Mathare Valley",
+      "zone": "Nairobi North Corridor",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 0.0,
+      "distance_to_m": 31.0,
+      "interval_label": "0-31 m",
+      "interval_area_ha": 40.9775102631,
+      "osm_buildings_in_buffer": 865,
+      "osm_buildings_potentially_affected": 730,
+      "potentially_affected_pct": 84.3930635838,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Mathare Valley",
+      "zone": "Nairobi North Corridor",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 31.0,
+      "distance_to_m": 62.5,
+      "interval_label": "31-62.5 m",
+      "interval_area_ha": 26.4045979595,
+      "osm_buildings_in_buffer": 815,
+      "osm_buildings_potentially_affected": 427,
+      "potentially_affected_pct": 52.3926380368,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "Mathare Valley",
+      "zone": "Nairobi North Corridor",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 62.5,
+      "distance_to_m": 125.0,
+      "interval_label": "62.5-125 m",
+      "interval_area_ha": 44.0901308581,
+      "osm_buildings_in_buffer": 1050,
+      "osm_buildings_potentially_affected": 86,
+      "potentially_affected_pct": 8.1904761905,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "South B",
+      "zone": "Nairobi South Plains",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 0.0,
+      "distance_to_m": 31.0,
+      "interval_label": "0-31 m",
+      "interval_area_ha": 23.1845485666,
+      "osm_buildings_in_buffer": 795,
+      "osm_buildings_potentially_affected": 784,
+      "potentially_affected_pct": 98.6163522013,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "South B",
+      "zone": "Nairobi South Plains",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 31.0,
+      "distance_to_m": 62.5,
+      "interval_label": "31-62.5 m",
+      "interval_area_ha": 23.2975830788,
+      "osm_buildings_in_buffer": 702,
+      "osm_buildings_potentially_affected": 662,
+      "potentially_affected_pct": 94.301994302,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "South B",
+      "zone": "Nairobi South Plains",
+      "screening_method": "Mapped river corridor",
+      "distance_from_m": 62.5,
+      "distance_to_m": 125.0,
+      "interval_label": "62.5-125 m",
+      "interval_area_ha": 45.2078500016,
+      "osm_buildings_in_buffer": 978,
+      "osm_buildings_potentially_affected": 713,
+      "potentially_affected_pct": 72.9038854806,
+      "osm_buildings_higher_concern": null,
+      "osm_buildings_moderate_concern": null,
+      "osm_buildings_lower_concern": null,
+      "moderate_concern_threshold": null,
+      "higher_concern_threshold": null
+    },
+    {
+      "inspection_area": "South C",
+      "zone": "Terrain drainage area",
+      "screening_method": "Terrain catchment (no mapped river)",
+      "distance_from_m": null,
+      "distance_to_m": null,
+      "interval_label": "Terrain catchment",
+      "interval_area_ha": 399.33,
+      "osm_buildings_in_buffer": 3938,
+      "osm_buildings_potentially_affected": 2422,
+      "potentially_affected_pct": 61.5033011681,
+      "osm_buildings_higher_concern": 2422.0,
+      "osm_buildings_moderate_concern": 1515.0,
+      "osm_buildings_lower_concern": 1.0,
+      "moderate_concern_threshold": 0.4,
+      "higher_concern_threshold": 0.6
+    }
+  ],
+  "forecast_2026": {
+    "scenario_id": "nairobi_ond_2026_el_nino",
+    "title": "Nairobi October\u2013December 2026 wet-season scenario",
+    "as_of": "2026-09-15",
+    "season": "October\u2013December 2026 (with rainfall in Nairobi expected to continue into January)",
+    "plain_summary": "Weather agencies expect a wetter-than-average short-rains season in Nairobi, with possible spells of heavy rain. This gives us a reason to prepare, but does not tell us which streets will flood or how deep the water will be.",
+    "history_breakdown": [
+      {
+        "period": "1984\u20132020",
+        "title": "Surface-water history",
+        "detail": "Satellite images show places where water has appeared repeatedly over the years."
+      },
+      {
+        "period": "2001\u20132020",
+        "title": "Rainfall history",
+        "detail": "Monthly rainfall records help compare places that have experienced unusually heavy rainfall. This information contributes to the concern score."
+      },
+      {
+        "period": "2021",
+        "title": "The shape and use of the land",
+        "detail": "Maps show slopes, low ground and surfaces where more rain may flow over the ground instead of soaking in."
+      },
+      {
+        "period": "September 2026",
+        "title": "Buildings and drains",
+        "detail": "Our saved OpenStreetMap data provides the mapped rivers, drains and building outlines used here."
+      }
+    ],
+    "outlook_facts": [
+      {
+        "label": "Nairobi rainfall",
+        "value": "Above average",
+        "detail": "Kenya Met expects above-average rain in Nairobi. Its outlook also says spells of heavy rain are likely in affected counties."
+      },
+      {
+        "label": "Expected start",
+        "value": "2nd\u20133rd week of October",
+        "detail": "Kenya Met expects rain to be fairly well spread through the season, continuing into January in Nairobi."
+      },
+      {
+        "label": "Climate driver",
+        "value": "Strengthening El Ni\u00f1o",
+        "detail": "In its 10 September 2026 advisory, NOAA put the chance of a very strong El Ni\u00f1o at more than 90% during late 2026 and early 2027. This is a forecast of El Ni\u00f1o strength, not Nairobi flood probability."
+      }
+    ],
+    "regional_context": "The regional weather centre, ICPAC, reports a high chance of more than 400 mm of rain over the season in parts of central Kenya. That figure covers a wider region; it is not a rainfall total predicted for each Nairobi study area.",
+    "analogue_years": [
+      {
+        "year": 2015,
+        "use": "Primary Kenya analogue identified by KMSA for the combined ENSO and Indian Ocean conditions"
+      },
+      {
+        "year": 1997,
+        "use": "Regional wet-season analogue identified by ICPAC"
+      },
+      {
+        "year": 2023,
+        "use": "Regional wet-season analogue identified by ICPAC and already used in the historical satellite review"
+      }
+    ],
+    "selected_model": {
+      "name": "Probabilistic rainfall-runoff and 2D flood scenario model",
+      "why": "It can turn several plausible 2026 storms into runoff, flow routes, water depth and affected-building ranges. A machine-learning forecast alone is not suitable because the project does not yet have enough checked flood-depth observations for training.",
+      "current_status": "The map uses the land, drainage and other local evidence to identify places needing closer review. It does not yet predict flood depth or the chance of flooding in 2026.",
+      "implementation": [
+        "Build low, central and severe 2026 storm scenarios from official forecasts and historical rainfall.",
+        "Convert rainfall to runoff using land cover, soil and drainage condition.",
+        "Route runoff through a checked surface and drainage model.",
+        "Report a range of water depths and affected buildings, including uncertainty."
+      ],
+      "preferred_tools": "SWMM for drains linked to HEC-RAS 2D or LISFLOOD-FP for surface flow, after drainage levels and structures are checked."
+    },
+    "rainfall_data_plan": [
+      {
+        "priority": 1,
+        "dataset": "Nairobi rain-gauge and IDF records",
+        "use": "Set local 1-hour, 3-hour, 6-hour and 24-hour design-storm intensity",
+        "status": "Required; request from KMSA and Nairobi drainage teams"
+      },
+      {
+        "priority": 2,
+        "dataset": "NASA GPM IMERG V07",
+        "use": "Build and check half-hourly storm shapes from 1998 to present",
+        "status": "Available; 0.1\u00b0 (~10 km), so it must be checked against gauges"
+      },
+      {
+        "priority": 3,
+        "dataset": "CHIRPS v3 daily rainfall",
+        "use": "Rank wet seasons and daily extremes from 1981 to near-present",
+        "status": "Available; 0.05\u00b0 and daily, not street-scale intensity"
+      },
+      {
+        "priority": 4,
+        "dataset": "ECMWF/Copernicus seasonal ensemble",
+        "use": "Represent the range of plausible OND 2026 rainfall, not one certain outcome",
+        "status": "Available; regional forecast must be bias-corrected for Nairobi"
+      }
+    ],
+    "buffer_method": {
+      "outer_limit_m": 125,
+      "bands": [
+        {
+          "label": "0\u201331 m",
+          "plain_name": "Closest to the waterway",
+          "purpose": "First inspection band because overflow and bank problems are most directly connected to the channel here."
+        },
+        {
+          "label": "31\u201362.5 m",
+          "plain_name": "Middle band",
+          "purpose": "Shows how exposure changes beyond the channel edge and immediate bank area."
+        },
+        {
+          "label": "62.5\u2013125 m",
+          "plain_name": "Outer screening band",
+          "purpose": "Captures nearby low ground and possible overflow routes without treating the whole neighbourhood as river exposure."
+        }
+      ],
+      "explanation": "We check land up to 125 metres on either side of a mapped river or drain. Splitting it into three distance bands helps compare building counts and plan visits as we move further from the waterway.",
+      "warning": "These distance bands help us plan checks. They do not mark legal river reserves or show how far a flood will reach. Riverbanks still need to be checked on the ground."
+    },
+    "sources": [
+      {
+        "name": "Kenya Met October\u2013December 2026 outlook",
+        "issued": "2026-08-31",
+        "url": "https://meteo.go.ke/documents/4790/OND_2026__Seasonal_Forecast.pdf"
+      },
+      {
+        "name": "ICPAC OND 2026 regional outlook",
+        "issued": "2026-08-18",
+        "url": "https://www.icpac.net/news/the-greater-horn-of-africa-is-expected-to-experience-a-wetter-than-normal-october-december-ond-2026-season-as-el-ni%C3%B1o-strengthens/"
+      },
+      {
+        "name": "NOAA ENSO Diagnostic Discussion",
+        "issued": "2026-09-10",
+        "url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.html"
+      },
+      {
+        "name": "NASA GPM rainfall data",
+        "issued": "current product information",
+        "url": "https://gpm.nasa.gov/data"
+      },
+      {
+        "name": "CHIRPS v3 rainfall data",
+        "issued": "current product information",
+        "url": "https://www.chc.ucsb.edu/data/chirps3"
+      },
+      {
+        "name": "ECMWF SEAS5 precipitation",
+        "issued": "current product information",
+        "url": "https://www.ecmwf.int/en/forecasts/datasets/precipitation-seas5"
+      }
+    ]
+  },
+  "overlays": {
+    "hazard": {
+      "file": "data/hazard_score.png",
+      "coordinates": [
+        [
+          36.649611338184066,
+          -1.1496617576922858
+        ],
+        [
+          37.110682501505636,
+          -1.1496617576922858
+        ],
+        [
+          37.110682501505636,
+          -1.4503015214713146
+        ],
+        [
+          36.649611338184066,
+          -1.4503015214713146
+        ]
+      ]
+    },
+    "priority": {
+      "file": "data/planning_priority.png",
+      "coordinates": [
+        [
+          36.649611338184066,
+          -1.1496617576922858
+        ],
+        [
+          37.110682501505636,
+          -1.1496617576922858
+        ],
+        [
+          37.110682501505636,
+          -1.4503015214713146
+        ],
+        [
+          36.649611338184066,
+          -1.4503015214713146
+        ]
+      ]
+    },
+    "corridor": {
+      "file": "data/candidate_corridor.png",
+      "coordinates": [
+        [
+          36.649611338184066,
+          -1.1496617576922858
+        ],
+        [
+          37.110682501505636,
+          -1.1496617576922858
+        ],
+        [
+          37.110682501505636,
+          -1.4503015214713146
+        ],
+        [
+          36.649611338184066,
+          -1.4503015214713146
+        ]
+      ]
+    }
+  },
+  "layer_manifest": [
+    {
+      "key": "hazard",
+      "label": "Flood concern",
+      "default_visible": true
+    },
+    {
+      "key": "priority",
+      "label": "Inspection priority",
+      "default_visible": false
+    },
+    {
+      "key": "candidate",
+      "label": "River flood concern areas",
+      "default_visible": false
+    },
+    {
+      "key": "buildings",
+      "label": "Screened buildings",
+      "default_visible": true
+    },
+    {
+      "key": "analysis_rivers",
+      "label": "All rivers and drains",
+      "default_visible": true
+    },
+    {
+      "key": "drainage",
+      "label": "Rivers and drains in study areas",
+      "default_visible": true
+    },
+    {
+      "key": "buffer_intervals",
+      "label": "Distance from rivers (3 bands)",
+      "default_visible": false
+    },
+    {
+      "key": "dams",
+      "label": "Dams and water bodies",
+      "default_visible": true
+    },
+    {
+      "key": "river_corridor",
+      "label": "Land within 125 m of rivers",
+      "default_visible": true
+    },
+    {
+      "key": "catchment",
+      "label": "South C drainage area",
+      "default_visible": true
+    },
+    {
+      "key": "inspection",
+      "label": "Study boundaries (6)",
+      "default_visible": true
+    },
+    {
+      "key": "locations",
+      "label": "Study locations and names",
+      "default_visible": true
+    }
+  ],
+  "warning": "The current map is the screening baseline for the OND 2026 scenario\u2014not observed flooding, predicted depth, or a completed hydraulic forecast."
+}
