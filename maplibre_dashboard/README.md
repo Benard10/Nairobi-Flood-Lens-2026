@@ -28,7 +28,19 @@ Red buildings overlap land needing closer review. Orange buildings were screened
 
 Keep `index.html`, `styles.css`, `app.js` and the Git-included `data/` assets together. `data/vector_tiles.json` identifies the three active tile bundles. Metrics, contextual JSON, small display vectors and raster overlays also support the map and controls. Raw analysis data and duplicate full GeoJSON tile inputs are excluded from publication.
 
-Serve this folder as the static site root. For GitHub Pages, a deployment workflow must upload this folder as the site artifact; simply selecting the repository root would serve the wrong entry point.
+Serve this folder as the static site root. GitHub Pages uses the `gh-pages` branch, which contains this folder at its root. In repository Settings → Pages, choose **Deploy from a branch**, **gh-pages**, and **/(root)**, then save.
+
+The dashboard address is https://benard10.github.io/Nairobi-Flood-Lens-2026/ once Pages is enabled and deployment finishes.
+
+After committing dashboard changes on `main`, update the published branch with:
+
+```sh
+git subtree split --prefix=maplibre_dashboard -b gh-pages-update
+git push origin gh-pages-update:gh-pages
+git branch -d gh-pages-update
+```
+
+The `.nojekyll` marker lets Pages serve the static assets directly.
 
 ## Update the results
 

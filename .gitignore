@@ -30,6 +30,7 @@
 !/maplibre_dashboard/index.html
 !/maplibre_dashboard/styles.css
 !/maplibre_dashboard/app.js
+!/maplibre_dashboard/.nojekyll
 !/maplibre_dashboard/README.md
 !/maplibre_dashboard/MEASUREMENT.md
 !/maplibre_dashboard/TILING.md
