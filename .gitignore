@@ -1,0 +1,67 @@
+# Publish only the application, analysis source and supporting documentation.
+/*
+!/.gitignore
+!/README.md
+!/requirements.txt
+!/requirements-dev.txt
+!/Flood_Staged_Analysis.ipynb
+!/flood_risk_planetary.py
+!/build_maplibre_dashboard.py
+!/build_dashboard_tiles.py
+!/model_config.example.json
+!/DATA_INPUTS.md
+!/forecast_scenarios/
+!/tests/
+!/docs/
+!/maplibre_dashboard/
+
+# Local caches, editor settings, credentials and generated outputs.
+**/__pycache__/
+**/*.py[cod]
+**/.ipynb_checkpoints/
+**/.pytest_cache/
+**/.env
+**/.env.*
+**/.DS_Store
+**/Thumbs.db
+
+# Dashboard source and documentation.
+/maplibre_dashboard/*
+!/maplibre_dashboard/index.html
+!/maplibre_dashboard/styles.css
+!/maplibre_dashboard/app.js
+!/maplibre_dashboard/README.md
+!/maplibre_dashboard/MEASUREMENT.md
+!/maplibre_dashboard/TILING.md
+!/maplibre_dashboard/data/
+
+# Runtime display assets only; exclude duplicate full GeoJSON tile inputs.
+/maplibre_dashboard/data/*
+!/maplibre_dashboard/data/dashboard_metrics.json
+!/maplibre_dashboard/data/neighborhoods.geojson
+!/maplibre_dashboard/data/inspection_zones.geojson
+!/maplibre_dashboard/data/river_inventory.json
+!/maplibre_dashboard/data/preparedness_context.json
+!/maplibre_dashboard/data/vector_tiles.json
+!/maplibre_dashboard/data/dams.geojson
+!/maplibre_dashboard/data/river_corridor.geojson
+!/maplibre_dashboard/data/drainage.geojson
+!/maplibre_dashboard/data/south_c_catchment.geojson
+!/maplibre_dashboard/data/candidate_corridor.png
+!/maplibre_dashboard/data/hazard_score.png
+!/maplibre_dashboard/data/planning_priority.png
+!/maplibre_dashboard/data/tiles/
+/maplibre_dashboard/data/tiles/*
+!/maplibre_dashboard/data/tiles/buildings-0f3d0ef64ccc1ee1/
+!/maplibre_dashboard/data/tiles/analysis-rivers-67d55638bc7f24a6/
+!/maplibre_dashboard/data/tiles/buffer-intervals-8f1c130f6654534a/
+# Tile build markers are not runtime assets.
+/maplibre_dashboard/data/tiles/**/complete.json
+/maplibre_dashboard/data/tiles/**/metadata.json
+
+# Retain maintained source tests only.
+/tests/*
+!/tests/test_flood_risk_planetary.py
+!/tests/dashboard_browser_qa.py
+!/tests/dashboard_data_qa.py
+!/tests/dashboard_tiles_qa.py

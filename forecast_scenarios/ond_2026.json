@@ -1,0 +1,153 @@
+{
+  "scenario_id": "nairobi_ond_2026_el_nino",
+  "title": "Nairobi October–December 2026 wet-season scenario",
+  "as_of": "2026-09-15",
+  "season": "October–December 2026 (with rainfall in Nairobi expected to continue into January)",
+  "plain_summary": "Weather agencies expect a wetter-than-average short-rains season in Nairobi, with possible spells of heavy rain. This gives us a reason to prepare, but does not tell us which streets will flood or how deep the water will be.",
+  "history_breakdown": [
+    {
+      "period": "1984–2020",
+      "title": "Surface-water history",
+      "detail": "Satellite images show places where water has appeared repeatedly over the years."
+    },
+    {
+      "period": "2001–2020",
+      "title": "Rainfall history",
+      "detail": "Monthly rainfall records help compare places that have experienced unusually heavy rainfall. This information contributes to the concern score."
+    },
+    {
+      "period": "2021",
+      "title": "The shape and use of the land",
+      "detail": "Maps show slopes, low ground and surfaces where more rain may flow over the ground instead of soaking in."
+    },
+    {
+      "period": "September 2026",
+      "title": "Buildings and drains",
+      "detail": "Our saved OpenStreetMap data provides the mapped rivers, drains and building outlines used here."
+    }
+  ],
+  "outlook_facts": [
+    {
+      "label": "Nairobi rainfall",
+      "value": "Above average",
+      "detail": "Kenya Met expects above-average rain in Nairobi. Its outlook also says spells of heavy rain are likely in affected counties."
+    },
+    {
+      "label": "Expected start",
+      "value": "2nd–3rd week of October",
+      "detail": "Kenya Met expects rain to be fairly well spread through the season, continuing into January in Nairobi."
+    },
+    {
+      "label": "Climate driver",
+      "value": "Strengthening El Niño",
+      "detail": "In its 10 September 2026 advisory, NOAA put the chance of a very strong El Niño at more than 90% during late 2026 and early 2027. This is a forecast of El Niño strength, not Nairobi flood probability."
+    }
+  ],
+  "regional_context": "The regional weather centre, ICPAC, reports a high chance of more than 400 mm of rain over the season in parts of central Kenya. That figure covers a wider region; it is not a rainfall total predicted for each Nairobi study area.",
+  "analogue_years": [
+    {
+      "year": 2015,
+      "use": "Primary Kenya analogue identified by KMSA for the combined ENSO and Indian Ocean conditions"
+    },
+    {
+      "year": 1997,
+      "use": "Regional wet-season analogue identified by ICPAC"
+    },
+    {
+      "year": 2023,
+      "use": "Regional wet-season analogue identified by ICPAC and already used in the historical satellite review"
+    }
+  ],
+  "selected_model": {
+    "name": "Probabilistic rainfall-runoff and 2D flood scenario model",
+    "why": "It can turn several plausible 2026 storms into runoff, flow routes, water depth and affected-building ranges. A machine-learning forecast alone is not suitable because the project does not yet have enough checked flood-depth observations for training.",
+    "current_status": "The map uses the land, drainage and other local evidence to identify places needing closer review. It does not yet predict flood depth or the chance of flooding in 2026.",
+    "implementation": [
+      "Build low, central and severe 2026 storm scenarios from official forecasts and historical rainfall.",
+      "Convert rainfall to runoff using land cover, soil and drainage condition.",
+      "Route runoff through a checked surface and drainage model.",
+      "Report a range of water depths and affected buildings, including uncertainty."
+    ],
+    "preferred_tools": "SWMM for drains linked to HEC-RAS 2D or LISFLOOD-FP for surface flow, after drainage levels and structures are checked."
+  },
+  "rainfall_data_plan": [
+    {
+      "priority": 1,
+      "dataset": "Nairobi rain-gauge and IDF records",
+      "use": "Set local 1-hour, 3-hour, 6-hour and 24-hour design-storm intensity",
+      "status": "Required; request from KMSA and Nairobi drainage teams"
+    },
+    {
+      "priority": 2,
+      "dataset": "NASA GPM IMERG V07",
+      "use": "Build and check half-hourly storm shapes from 1998 to present",
+      "status": "Available; 0.1° (~10 km), so it must be checked against gauges"
+    },
+    {
+      "priority": 3,
+      "dataset": "CHIRPS v3 daily rainfall",
+      "use": "Rank wet seasons and daily extremes from 1981 to near-present",
+      "status": "Available; 0.05° and daily, not street-scale intensity"
+    },
+    {
+      "priority": 4,
+      "dataset": "ECMWF/Copernicus seasonal ensemble",
+      "use": "Represent the range of plausible OND 2026 rainfall, not one certain outcome",
+      "status": "Available; regional forecast must be bias-corrected for Nairobi"
+    }
+  ],
+  "buffer_method": {
+    "outer_limit_m": 125,
+    "bands": [
+      {
+        "label": "0–31 m",
+        "plain_name": "Closest to the waterway",
+        "purpose": "First inspection band because overflow and bank problems are most directly connected to the channel here."
+      },
+      {
+        "label": "31–62.5 m",
+        "plain_name": "Middle band",
+        "purpose": "Shows how exposure changes beyond the channel edge and immediate bank area."
+      },
+      {
+        "label": "62.5–125 m",
+        "plain_name": "Outer screening band",
+        "purpose": "Captures nearby low ground and possible overflow routes without treating the whole neighbourhood as river exposure."
+      }
+    ],
+    "explanation": "We check land up to 125 metres on either side of a mapped river or drain. Splitting it into three distance bands helps compare building counts and plan visits as we move further from the waterway.",
+    "warning": "These distance bands help us plan checks. They do not mark legal river reserves or show how far a flood will reach. Riverbanks still need to be checked on the ground."
+  },
+  "sources": [
+    {
+      "name": "Kenya Met October–December 2026 outlook",
+      "issued": "2026-08-31",
+      "url": "https://meteo.go.ke/documents/4790/OND_2026__Seasonal_Forecast.pdf"
+    },
+    {
+      "name": "ICPAC OND 2026 regional outlook",
+      "issued": "2026-08-18",
+      "url": "https://www.icpac.net/news/the-greater-horn-of-africa-is-expected-to-experience-a-wetter-than-normal-october-december-ond-2026-season-as-el-ni%C3%B1o-strengthens/"
+    },
+    {
+      "name": "NOAA ENSO Diagnostic Discussion",
+      "issued": "2026-09-10",
+      "url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.html"
+    },
+    {
+      "name": "NASA GPM rainfall data",
+      "issued": "current product information",
+      "url": "https://gpm.nasa.gov/data"
+    },
+    {
+      "name": "CHIRPS v3 rainfall data",
+      "issued": "current product information",
+      "url": "https://www.chc.ucsb.edu/data/chirps3"
+    },
+    {
+      "name": "ECMWF SEAS5 precipitation",
+      "issued": "current product information",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/precipitation-seas5"
+    }
+  ]
+}

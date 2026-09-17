@@ -1,0 +1,28 @@
+{
+  "bbox": [36.65, -1.45, 37.11, -1.15],
+  "crs": "EPSG:32737",
+  "resolution_m": 30,
+  "reporting_resolution_m": 90,
+  "hydrology_buffer_m": 5000,
+  "aoi_path": null,
+  "neighborhood_radius_m": 1000,
+  "terrain_window_m": 900,
+  "built_density_window_m": 450,
+  "water_influence_m": 1500,
+  "stream_threshold_km2": 1.0,
+  "drainage_corridor_m": 500,
+  "corridor_hand_max_m": 5.0,
+  "corridor_hazard_threshold": 0.60,
+  "rainfall_start": "2001-01-01",
+  "rainfall_end": "2020-12-31",
+  "percentile_low": 2.0,
+  "percentile_high": 98.0,
+  "weights": {
+    "extreme_rainfall": 0.10,
+    "topographic_wetness": 0.20,
+    "low_hand": 0.20,
+    "depression_storage": 0.15,
+    "drainage_proximity": 0.15,
+    "runoff_potential": 0.20
+  }
+}

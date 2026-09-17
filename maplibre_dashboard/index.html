@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nairobi Flood Lens</title>
+  <script>
+    try { document.documentElement.dataset.theme = localStorage.getItem('nairobi-flood-dashboard-theme') || 'dark'; }
+    catch { document.documentElement.dataset.theme = 'dark'; }
+  </script>
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-terradraw@1.0.1/dist/maplibre-gl-terradraw.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">N</span><span>Nairobi 2026 Flood Preparedness</span></div>
+    <nav><button class="nav-active" data-view-target="intro">Part A · The story</button><button data-view-target="dashboard">Part B · Dashboard</button></nav>
+    <div class="top-actions">
+      <span class="status-dot"></span><span class="analysis-status">Analysis current</span>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme"><span id="theme-icon">☀</span><span id="theme-label">Light</span></button>
+    </div>
+  </header>
+
+  <section id="intro-view" class="intro-shell">
+    <div class="intro-hero">
+      <div class="intro-copy">
+        <div class="eyebrow">Part A · Nairobi flood preparedness</div>
+        <h1>Understanding flood risk in Nairobi</h1>
+        <p class="intro-lead">For people living and working in Nairobi, flooding reaches far beyond a riverbank. Water entering a home, a market stall or a busy road can interrupt a day’s work, damage belongings and make an ordinary journey unsafe.</p>
+        <p>With the short rains approaching, there is time to prepare. Past floods show where people have faced disruption. This story links those reports to the land, the rivers and drains, and the buildings that are most likely to need a closer review before heavy rain arrives.</p>
+        <p id="intro-discovery-summary">Loading the findings from the current analysis…</p>
+        <div class="intro-actions"><button id="open-dashboard" class="primary-button intro-button">Open the dashboard →</button><span>Explore the areas, buildings and drainage on the map.</span></div>
+      </div>
+      <div class="problem-card">
+        <span class="problem-number">01</span>
+        <h2>The main discovery</h2>
+        <p id="intro-key-finding">Loading the differences between our study areas…</p>
+        <div class="problem-stats"><div><strong id="intro-area-count">6</strong><span>selected areas</span></div><div><strong id="intro-building-count">—</strong><span>building records reviewed</span></div></div>
+      </div>
+    </div>
+
+    <div class="story-grid">
+
+      <article class="story-card wide">
+
+        <div class="eyebrow">Section 1 · Why these six places?</div>
+
+        <h2>We compared six areas to see where the risk pattern changes</h2>
+
+        <p id="study-selection"></p>
+
+        <p id="study-drivers"></p>
+
+        <div id="study-context-areas" class="story-area-findings"></div>
+
+      </article>
+
+      <article class="story-card wide discovery-card">
+
+        <div class="eyebrow">Section 2 · The overall pattern</div>
+
+        <h2>The same neighbourhood can hold different levels of risk</h2>
+
+        <p id="story-main-finding"></p>
+
+        <p id="story-land-finding"></p>
+
+        <p id="story-comparison-finding"></p>
+
+        <p class="table-note">These totals cover our six study areas and the drainage areas checked for buildings. They do not cover all of Nairobi or count the people living there.</p>
+
+      </article>
+
+
+
+      <article class="story-card wide area-discoveries-card">
+
+        <div class="eyebrow">Section 3 · What changes from place to place</div>
+
+        <h2>Some areas stand out more than others</h2>
+
+        <p class="section-lead">Some areas have more buildings needing review. Others have a larger proportion of their checked buildings marked red. Looking at both helps us decide where to focus attention.</p>
+
+        <div id="story-area-findings" class="story-area-findings"></div>
+
+      </article>
+
+
+
+      <article class="story-card wide">
+
+        <div class="eyebrow">Section 4 · How to read the map</div>
+
+        <h2>Nearness to water is not the whole story</h2>
+
+        <p><i class="building-review-swatch"></i><strong>Red buildings</strong> overlap land marked for closer review. Near rivers, we look for nearby low ground with a higher flood-concern score. In South C, we check higher-concern land within the area that drains towards the selected outlet.</p>
+
+        <p><i class="building-other-swatch"></i><strong>Orange buildings</strong> were checked but do not overlap that land. Even a small overlap is enough to mark a building red. This does not mean the whole building will flood.</p>
+
+        <p class="table-note">Orange does not mean safe. These checks do not show confirmed damage, water depth or how much water a drain can carry.</p>
+
+      </article>
+
+
+
+      <article class="story-card wide findings-card">
+
+        <div class="section-heading"><div><div class="eyebrow">Section 5 · What to do before the rain</div><h2>Where to focus field checks first</h2></div><span class="finding-badge" id="finding-area-badge">Six selected areas</span></div>
+
+        <p class="section-lead">Use these findings to plan visits, clear drainage and prepare for disruption. A highlighted place needs a closer look; the map cannot tell us whether it will flood.</p>
+
+        <div class="perspective-grid">
+
+          <section class="perspective-card environment-perspective">
+
+            <span class="perspective-icon">E</span><div class="eyebrow">Environment</div>
+
+            <h3>Protect the spaces that hold and move water</h3>
+
+            <strong class="finding-number" id="finding-environment-number">—</strong>
+
+            <p id="finding-environment-text">Loading the environmental finding…</p>
+
+            <div class="finding-action"><b>What to check</b><span>Look for rubbish or structures blocking river edges, drains and dam outlets. Identify places where vegetation could slow water flowing over the ground.</span></div>
+
+          </section>
+
+          <section class="perspective-card disaster-perspective">
+
+            <span class="perspective-icon">D</span><div class="eyebrow">Disaster management</div>
+
+            <h3>Start where more buildings need review</h3>
+
+            <strong class="finding-number" id="finding-disaster-number">—</strong>
+
+            <p id="finding-disaster-text">Loading the preparedness finding…</p>
+
+            <div class="finding-action"><b>What to check</b><span>Visit crossings and blocked drains. Check safe routes and confirm who to contact if water rises.</span></div>
+
+          </section>
+
+          <section class="perspective-card business-perspective">
+
+            <span class="perspective-icon">B</span><div class="eyebrow">Business</div>
+
+            <h3>Keep trading and deliveries in mind</h3>
+
+            <strong class="finding-number" id="finding-business-number">—</strong>
+
+            <p id="finding-business-text">Loading the findings for businesses…</p>
+
+            <div class="finding-action"><b>How to prepare</b><span>Plan where to move stock and equipment if water rises. Protect records, check other delivery routes and keep emergency contacts ready.</span></div>
+
+          </section>
+
+        </div>
+
+        <p class="findings-limit"><b>What the numbers mean:</b> we count mapped buildings and land needing review. We do not count residents or estimate losses. The analysis does not predict flood depth or timing, and drains and dams still need checks on the ground.</p>
+
+      </article>
+
+
+
+      <article class="story-card wide">
+
+        <div class="eyebrow">Section 6 · What past rainfall has meant for daily life</div>
+
+        <h2>Past flood reports show why these places matter</h2>
+
+        <p class="section-lead">Behind each flooded building are everyday needs: a place to sleep, goods to sell, clean water and a safe route to school or work. The reports below show what happened in past rainy seasons.</p>
+
+        <div id="impact-history" class="history-timeline"></div>
+
+      </article>
+
+
+
+      <article class="story-card wide">
+
+        <div class="eyebrow">Section 7 · The coming short rains</div>
+
+        <h2 id="rainfall-amount-title"></h2>
+
+        <p id="rainfall-amount-detail"></p><p id="rainfall-preparation"></p>
+
+        <div id="rainfall-amount-source" class="source-links"></div>
+
+      </article>
+
+
+
+      <article class="story-card wide">
+
+        <div class="eyebrow">Section 8 · Roads and access</div>
+
+        <h2>Some routes are more likely to be disrupted than others</h2>
+
+        <p class="section-lead">Past floods disrupted Lang’ata, Mombasa, Mbagathi, Jogoo, Enterprise and Lunga Lunga roads. Check drainage and low crossings along these routes before heavy rain. The markers show places along the reported roads; exact flooded sections still need to be checked.</p>
+
+        <div id="story-road-watch" class="story-area-findings"></div>
+
+        <p class="table-note">Pulsing markers highlight places to inspect. Road reports are dated; locations are approximate.</p>
+
+      </article>
+
+
+
+      <article class="story-card wide">
+
+        <div class="eyebrow">Section 9 · How the areas were checked</div>
+
+        <div class="method-columns">
+
+          <div><span class="method-icon river-icon">≈</span><h3>Following rivers and drains</h3><p>We check buildings in three distance bands, up to 125 metres on either side of mapped rivers and drains. Mapped dams and water bodies also help us identify nearby low ground and places close to water.</p><div class="area-chips"><span>Mathare Valley</span><span>Korogocho</span><span>Gikomba Market</span><span>South B</span><span>Kibera</span></div></div>
+
+          <div><span class="method-icon terrain-icon">⌁</span><h3>South C</h3><p id="story-south-c-method">Loading the terrain-catchment finding…</p><div class="flow-note"><b>Wilson Airport field</b><i>→</i><b>South C drainage area</b></div></div>
+
+        </div>
+
+        <p class="method-warning" id="buffer-warning"></p>
+
+      </article>
+
+
+
+      <article class="story-card wide history-card">
+
+        <div class="section-heading"><div><div class="eyebrow">Section 10 · What evidence backs this up</div><h2>The history behind the analysis</h2></div></div>
+
+        <p class="section-lead">We bring together maps of the land, rivers, drains and buildings with past rainfall and water records. The dates below show how old each part of that evidence is.</p>
+
+        <div class="history-timeline" id="history-timeline"></div>
+
+      </article>
+
+
+
+      <article class="story-card wide outlook-card">
+
+        <div class="section-heading"><div><div class="eyebrow">Section 11 · The seasonal outlook</div><h2>The 2026 short-rains outlook</h2></div></div>
+
+        <p class="outlook-narrative">This weather outlook helps us prepare. It comes from weather agencies and is separate from our building checks.</p>
+
+        <p class="outlook-narrative" id="forecast-summary">Loading the 2026 rainfall outlook…</p>
+
+        <div class="outlook-grid" id="outlook-facts"></div>
+
+        <p class="regional-note" id="regional-context"></p>
+
+      </article>
+
+
+
+      <article class="story-card wide source-card">
+
+        <div class="eyebrow">Section 12 · Sources and dates</div>
+
+        <h2>Where the story comes from</h2>
+
+        <h3>Data used in the analysis</h3>
+        <p class="analysis-source-note">The periods below describe the data used, rather than the date of a future flood. The satellite and climate inputs were retrieved through Microsoft Planetary Computer on 14 September 2026.</p>
+        <div class="analysis-source-table-wrap">
+          <table class="analysis-source-table">
+            <thead><tr><th scope="col">Data source</th><th scope="col">How we used it</th><th scope="col">Data period or snapshot</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Copernicus DEM GLO-30</th><td>Elevation and terrain-derived drainage, low ground and water accumulation.</td><td>2021 dataset · 30 m grid</td></tr>
+              <tr><th scope="row">ESA WorldCover</th><td>Land cover, built-up density and runoff potential.</td><td>2021 · 10 m land cover</td></tr>
+              <tr><th scope="row">JRC Global Surface Water</th><td>Historical surface-water occurrence.</td><td>1984–2020</td></tr>
+              <tr><th scope="row">TerraClimate precipitation</th><td>Historical rainfall context: mean annual maximum monthly totals.</td><td>2001–2020 · approximately 4.6 km resolution</td></tr>
+              <tr><th scope="row">OpenStreetMap buildings</th><td>Mapped footprints screened against land selected for closer review.</td><td>Cached snapshot retrieved 14 September 2026</td></tr>
+              <tr><th scope="row">OpenStreetMap waterways</th><td>Reviewed river, stream, canal, drain and ditch lines for drainage proximity and corridors.</td><td>Cached snapshot · retrieval date not recorded</td></tr>
+              <tr><th scope="row">OpenStreetMap water bodies</th><td>Reviewed dam and mapped water-body polygons shown on the map.</td><td>Cached snapshot · retrieval date not recorded</td></tr>
+              <tr><th scope="row">Locally supplied waterways</th><td>Additional waterway lines clipped to the Nairobi study boundary.</td><td>Supplied September 2026 · recorded 15 September 2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="analysis-source-note">Terrain-derived layers and concern scores are outputs of this analysis. Historical water occurrence does not show individual flood events, and mapped buildings do not count residents. OpenStreetMap data is credited to OpenStreetMap contributors under ODbL 1.0.</p>
+        <h3>Weather outlook and supporting reports</h3>
+        <div id="forecast-sources" class="source-links"></div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+  <main id="dashboard-view" class="dashboard-shell" hidden>
+    <aside class="left-column">
+      <section class="card map-help-card">
+        <details>
+          <summary>How to use the map</summary>
+          <ol class="map-help-steps">
+            <li>Drag to move around. Scroll or use the + and − buttons to zoom.</li>
+            <li>Choose a study area from the menu, or click its point or name on the map. The building counts and selected layers update for that area.</li>
+            <li>Study points open two tabs: <strong>Analysis</strong> for the findings, and <strong>History &amp; checks</strong> for past reports and places to inspect.</li>
+            <li>Click a coloured building to read its result. Click a red warning triangle for a past road-flood report.</li>
+            <li>Use the layer switches to choose what appears. Read the colour scales below; distance-band colours show river distance, not flood severity.</li>
+            <li>Change the background map for streets or satellite imagery. Your selected area and layer switches stay in place.</li>
+            <li>The line and polygon tools at the top right measure distance and area. Finish a line with Enter; close an area by clicking its first corner.</li>
+          </ol>
+        </details>
+      </section>
+      <section class="card filter-card">
+        <div class="card-title"><span>Filters</span><button id="reset-filters" class="text-button" type="button">Reset</button></div>
+        <label class="filter-label" for="area-select">Study area</label>
+        <select id="area-select" class="panel-select"><option value="all">All study areas</option></select>
+        <label class="filter-label" for="basemap-select">Background map</label>
+        <select id="basemap-select" class="panel-select" aria-label="Basemap">
+          <option value="standard">Simple street map</option>
+          <option value="satellite">Satellite imagery</option>
+          <option value="outdoors">Detailed street map</option>
+        </select>
+        <p class="table-note">The simple street map follows your light or dark theme.</p>
+      </section>
+
+      <section class="card layer-card">
+        <div class="card-title"><span>Map layers</span><span class="muted">show / hide</span></div>
+        <div id="layer-controls" class="layer-controls"></div>
+        <p class="table-note">Flood concern and inspection priority cover the analysis extent. River distance bands stay inside the study boundaries. Selecting an area filters buildings, study rivers and distance bands.</p>
+        <details class="layer-guide"><summary>What each layer shows</summary><dl id="layer-guide-content"></dl></details>
+      </section>
+      <section class="card lookout-card">
+        <div class="card-title">Roads to check</div>
+        <p class="table-note">Red warning symbols mark roads with past flood reports.</p>
+        <div id="map-lookout-list" class="compact-list"></div>
+      </section>
+      <section class="card measurement-card">
+        <div class="card-title">Measure on the map</div>
+        <p class="table-note">Use the line tool for distance or the polygon tool for area. Click to add points. Press Enter to finish a line, or click the first corner to close an area. Select a shape to adjust it. Use the bin to clear measurements.</p>
+        <p class="table-note">Measurements follow the map surface and do not include terrain height.</p>
+        <p id="measurement-status" class="table-note" role="status">Open the map to measure.</p>
+      </section>
+
+      <section class="card">
+        <div class="card-title">Six study areas</div>
+        <p class="table-note">Choose an area to see its findings and checked buildings.</p>
+        <div id="study-area-list" class="study-area-list"></div>
+      </section>
+      <section class="card">
+        <div class="card-title">Rivers used in the analysis</div>
+        <p id="analysis-river-summary" class="table-note"></p>
+        <div id="analysis-river-list" class="compact-list river-inventory"></div>
+      </section>
+
+      <section class="card hero-card">
+        <div class="card-title">Study overview</div>
+        <div class="big-number" id="inspection-count">—</div>
+        <div class="muted">study areas reviewed</div>
+        <div class="stat-grid">
+          <div><strong id="highest-hazard">—</strong><span>highest average concern score</span></div>
+          <div><strong id="high-area">—</strong><span>land with higher concern</span></div>
+        </div>
+      </section>
+
+      <section class="card question-card">
+        <div class="card-title">2026 model status</div>
+        <p id="dashboard-model-status">The map shows places needing closer review. It does not yet predict flood depth or the chance of flooding.</p>
+      </section>
+
+      <section class="card south-card" id="south-c-card">
+        <div class="card-title"><span>Land draining through South C</span><span class="pill">Terrain</span></div>
+        <div class="catchment-value"><strong id="catchment-area">—</strong><span>km² drains through South C</span></div>
+        <div class="progress-track"><span id="catchment-progress"></span></div>
+        <div class="mini-row"><span>Higher-concern part</span><strong id="catchment-high">—</strong></div>
+        <div class="mini-row"><span>Airport reference point in drainage area</span><strong id="airport-upstream">—</strong></div>
+        <div class="notice" id="outlet-notice">Check the selected outlet against a drain or culvert on the ground.</div>
+      </section>
+
+      <section class="card legend-card">
+        <div class="card-title">Flood concern scale</div>
+        <div class="gradient"></div>
+        <div class="legend-labels"><span>Low</span><span>Medium</span><span>High</span></div>
+        <div class="card-title">Inspection priority scale</div>
+        <div class="gradient priority-gradient"></div>
+        <div class="legend-labels"><span>Low</span><span>Medium</span><span>High</span></div>
+        <p class="table-note">When both colour layers are on, inspection priority appears over flood concern. Switch one off to read the other clearly. River flood concern areas are the red screening patches near rivers.</p>
+        <p class="table-note">Optional river bands: red 0–31 m, orange 31–62.5 m, yellow 62.5–125 m. These show distance, not flood severity.</p>
+      </section>
+    </aside>
+
+    <section class="map-panel">
+      <div class="map-toolbar">
+        <div class="map-panel-title"><strong>Flood screening map</strong><span>Nairobi analysis extent · six study buffers</span></div>
+        <div class="map-tools">
+          <div class="map-badge"><span id="refresh-dot" class="refresh-dot"></span><span id="refresh-status">Auto-refresh on</span></div>
+        </div>
+      </div>
+      <div id="map"></div>
+      <div id="map-message" class="map-message">Loading map and analysis data…</div>
+      <div class="map-key"><span><i class="key-river"></i>All rivers and drains / bright lines in study areas</span><span><i class="key-dam"></i>Dams and water bodies</span><span><i class="key-river-polygon"></i>Land within 125 m of rivers</span><span><i class="key-study-point"></i>Study locations</span><span><i class="key-study-area"></i>Study boundaries</span><span><i class="key-catchment"></i>South C drainage area</span><span><i class="building-review-swatch"></i>Red: flagged buildings</span><span><i class="building-other-swatch"></i>Orange: other screened buildings</span></div>
+    </section>
+
+    <aside class="right-column">
+      <section class="card building-overview-card">
+        <div class="card-title"><span>Building screening overview</span><span class="pill red" id="building-scope">All areas</span></div>
+        <div class="donut-layout">
+          <div id="building-donut" class="building-donut"><div><strong id="donut-share">—</strong><span>need review</span></div></div>
+          <div class="donut-legend">
+            <div><i class="review-swatch"></i><span>Need closer review</span><strong id="overview-affected">—</strong></div>
+            <div><i class="screened-swatch"></i><span>Other screened buildings</span><strong id="overview-other">—</strong></div>
+          </div>
+        </div>
+      </section>
+      <section class="card fill-card">
+        <div class="card-title"><span>Area comparison</span><span class="pill">Average concern</span></div>
+        <div id="neighborhood-bars" class="bar-list"></div>
+      </section>
+      <section class="card">
+        <div class="card-title"><span id="review-area-title">Areas needing closer review</span><span class="pill red" id="review-area-method">All methods</span></div>
+        <div class="corridor-total"><strong id="corridor-total">—</strong><span>ha combined</span></div>
+        <div id="corridor-list" class="compact-list"></div>
+      </section>
+      <section class="card buffer-building-card">
+        <div class="card-title"><span>Building checks by area</span><span class="pill red">By drainage area</span></div>
+        <p class="plain-intro">Choose an area to see how many mapped buildings fall in places needing closer review.</p>
+        <select id="buffer-area-select" class="panel-select"><option value="all">All study areas</option></select>
+        <div class="buffer-totals">
+          <div><strong id="buffer-total">—</strong><span>mapped buildings</span></div>
+          <div><strong id="buffer-affected">—</strong><span>need closer review</span></div>
+        </div>
+        <div class="table-wrap">
+          <table class="buffer-table">
+            <thead><tr><th>Area or river distance</th><th>Mapped</th><th>Review</th><th>Share</th></tr></thead>
+            <tbody id="buffer-building-rows"></tbody>
+          </table>
+        </div>
+        <p class="table-note">“Review” is a screening result, not confirmed flood damage. Counts refer to mapped building footprints, not people.</p>
+      </section>
+      <section class="card building-color-card">
+        <div class="card-title">Why some buildings are red</div>
+        <p><i class="building-review-swatch"></i><strong>Red — needs closer review.</strong> Part of the mapped building overlaps land marked for review.</p>
+        <p><i class="building-other-swatch"></i><strong>Orange — checked, not flagged.</strong> The building does not overlap that land. This does not mean it is safe.</p>
+        <p class="table-note"><strong>Near rivers:</strong> we check river distance, height above nearby drainage and the flood-concern score. Distance alone does not make a building red.</p>
+        <p class="table-note"><strong>South C:</strong> we check higher-concern land in its drainage area. There is no dedicated river mapped for this study location.</p>
+        <p class="table-note">Click a building to read its result. Buildings shown only on the background map have no result in this layer. The colours do not show confirmed flood damage.</p>
+      </section>
+      <section class="card quality-card">
+        <div class="card-title" id="area-story-title">What the selected area shows</div>
+        <p id="area-story">Select an area on the map or from the menu to see its drainage method and building-screening result.</p>
+        <p class="warning">The colours do not show flood depth or the chance of flooding.</p>
+      </section>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-terradraw@1.0.1/dist/maplibre-gl-terradraw.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
