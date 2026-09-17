@@ -488,10 +488,7 @@ function renderDiscoveryStory(buildingAreas) {
   const share = totals.screened ? 100 * totals.review / totals.screened : 0;
   const mostFlagged = [...buildingAreas].sort((a,b) => b.review - a.review)[0];
   const highestShare = [...buildingAreas].sort((a,b) => b.share - a.share)[0];
-  const mostScreened = [...buildingAreas].sort((a,b) => b.screened - a.screened)[0];
   const highestConcern = [...metrics.neighborhoods].sort((a,b) => b.hazard_score_mean - a.hazard_score_mean)[0];
-  const highestPriority = [...metrics.neighborhoods].sort((a,b) => b.planning_priority_score_mean - a.planning_priority_score_mean)[0];
-  const highestCorridor = [...metrics.corridors].filter(row => Number.isFinite(row.corridor_hazard_mean)).sort((a,b) => b.corridor_hazard_mean - a.corridor_hazard_mean)[0];
   const count = metrics.neighborhoods.length;
   document.querySelector('#intro-discovery-summary').textContent =
     `Our checks across ${count} study areas identify ${number(totals.review,0)} of ${number(totals.screened,0)} mapped buildings (${number(share,1)}%) for closer review. The map shows where these buildings sit and how the nearby drainage helps explain the result.`;
@@ -507,32 +504,18 @@ function renderDiscoveryStory(buildingAreas) {
   document.querySelector('#story-south-c-method').textContent =
     `For South C, the method is different. We follow the land draining toward the selected outlet rather than using a mapped river corridor. The catchment covers ${number(metrics.south_c.catchment_area_km2,2)} km², ${number(metrics.south_c.high_hazard_area_pct,1)}% of which scores as higher concern, and ${number(southC?.review || 0,0)} of ${number(southC?.screened || 0,0)} checked buildings fall in that higher-risk drainage area.`;
   const container = document.querySelector('#story-area-findings');
-  container.innerHTML = [...buildingAreas].sort((a,b) => b.review-a.review).map(area => {
-    const row = metrics.neighborhoods.find(item => item.name === area.name);
-    const corridor = metrics.corridors.find(item => item.name === area.name);
-    let discovery;
-    if (area.name === 'South C') {
-      discovery = `South C is treated as a drainage problem, not a river-band problem. The terrain catchment shows where water can pool and move toward the selected outlet, which is why this area is assessed differently from the others.`;
-    } else if (area.name === mostFlagged.name) {
-      discovery = `${number(area.review,0)} of ${number(area.screened,0)} checked buildings sit in land that needs a closer look. This is the highest total in the study, so it stands out as the first place to inspect.`;
-    } else if (area.name === highestShare.name) {
-      discovery = `${number(area.share,1)}% of checked buildings here need closer review, the largest share in the six study areas. That makes this place especially important when prioritising field checks.`;
-    } else if (area.name === mostScreened.name) {
-      discovery = `This area has the largest number of screened buildings, ${number(area.screened,0)}, but the proportion flagged is ${number(area.share,1)}%. The volume is large, yet the risk signal still depends on where the higher-concern land is located.`;
-    } else if (area.name === highestCorridor?.name) {
-      discovery = `This river-based study area has the strongest average corridor concern score (${number(corridor.corridor_hazard_mean,2)}). That helps explain why ${number(area.review,0)} buildings still need closer review even though the total screened footprint is lower.`;
-    } else {
-      discovery = `The average concern score here is ${number(row.hazard_score_mean,2)}, while some local patches score as high as ${number(row.hazard_score_max,2)}. Those pockets matter because they can sit beside areas that look calmer overall.`;
-    }
-    if (area.name === highestConcern.name) discovery += ` Its average concern score is the highest of the six study areas (${number(row.hazard_score_mean,2)}).`;
-    if (area.name === highestPriority.name) discovery += ` It also has the highest average inspection-priority score (${number(row.planning_priority_score_mean,2)}).`;
-    const names = String(corridor?.river_names || '').split(';').map(name=>name.trim()).filter(Boolean);
-    const drainage = area.name === 'South C' ? 'Checked using the land draining towards South C.' : `Mapped waterways: ${names.join(', ') || 'rivers, streams and drains'}.`;
-    return `<section class="story-area-finding"><h3>${escapeHtml(area.name)}</h3>` +
-      `<strong>${number(area.review,0)} of ${number(area.screened,0)} need review · ${number(area.share,1)}%</strong>` +
-      `<p>${escapeHtml(discovery)}</p><p class="table-note">${escapeHtml(drainage)}</p>` +
-      `<button class="text-button" type="button" data-story-area="${escapeHtml(area.name)}">Explore this finding on the map →</button></section>`;
-  }).join('');
+  container.innerHTML = `<table class="analysis-source-table summary-area-table">
+    <thead><tr><th scope="col">Study area</th><th scope="col">Flagged / screened</th><th scope="col">Flagged share</th><th scope="col">Mean concern score</th><th scope="col">Drainage context</th></tr></thead>
+    <tbody>${[...buildingAreas].sort((a,b) => b.review-a.review).map(area => {
+      const row = metrics.neighborhoods.find(item => item.name === area.name);
+      const corridor = metrics.corridors.find(item => item.name === area.name);
+      const names = [...new Set(String(corridor?.river_names || '').split(';').map(name => name.trim()).filter(Boolean))];
+      const drainage = area.name === 'South C' ? 'Terrain drainage catchment' : names.join(', ') || 'Mapped rivers and drains';
+      return `<tr><th scope="row"><button class="text-button" type="button" data-story-area="${escapeHtml(area.name)}" aria-label="Explore ${escapeHtml(area.name)} on the map">${escapeHtml(area.name)} →</button></th>` +
+        `<td>${number(area.review,0)} / ${number(area.screened,0)}</td><td>${number(area.share,1)}%</td>` +
+        `<td>${number(row.hazard_score_mean,2)}</td><td>${escapeHtml(drainage)}</td></tr>`;
+    }).join('')}</tbody></table>
+    <p class="table-note">Mean concern scores describe the 1 km study areas on a 0–1 scale; they are not flood probabilities. South C building screening uses a terrain catchment. Click an area name to explore its results in Part B.</p>`;
   container.querySelectorAll('[data-story-area]').forEach(button => button.addEventListener('click', () => {
     switchView('dashboard');
     selectArea(button.dataset.storyArea);
