@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nairobi Flood Lens</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <script>
     try { document.documentElement.dataset.theme = localStorage.getItem('nairobi-flood-dashboard-theme') || 'dark'; }
     catch { document.documentElement.dataset.theme = 'dark'; }
@@ -26,9 +27,9 @@
     <div class="intro-hero">
       <div class="intro-copy">
         <div class="eyebrow">Part A · Nairobi flood preparedness</div>
-        <h1>Understanding flood risk in Nairobi</h1>
-        <p class="intro-lead">For people living and working in Nairobi, flooding reaches far beyond a riverbank. Water entering a home, a market stall or a busy road can interrupt a day’s work, damage belongings and make an ordinary journey unsafe.</p>
-        <p>With the short rains approaching, there is time to prepare. Past floods show where people have faced disruption. This story links those reports to the land, the rivers and drains, and the buildings that are most likely to need a closer review before heavy rain arrives.</p>
+        <h1>Nairobi flood preparedness at a glance</h1>
+        <p class="intro-lead">Ahead of the October–December 2026 short rains, use the dashboard to prioritise drainage checks, building reviews and routes that need attention.</p>
+        <p>Compare six study areas, see which buildings need closer review, and use the linked map findings to plan field visits before heavy rain.</p>
         <p id="intro-discovery-summary">Loading the findings from the current analysis…</p>
         <div class="intro-actions"><button id="open-dashboard" class="primary-button intro-button">Open the dashboard →</button><span>Explore the areas, buildings and drainage on the map.</span></div>
       </div>
@@ -52,13 +53,13 @@
 
         <p id="study-drivers"></p>
 
-        <div id="study-context-areas" class="story-area-findings"></div>
+        <details class="summary-details"><summary>Why each area was selected · reports and map links</summary><div id="study-context-areas" class="story-area-findings"></div></details>
 
       </article>
 
       <article class="story-card wide discovery-card">
 
-        <div class="eyebrow">Section 2 · The overall pattern</div>
+        <div class="eyebrow">Section 2 · Key findings</div>
 
         <h2>The same neighbourhood can hold different levels of risk</h2>
 
@@ -76,13 +77,13 @@
 
       <article class="story-card wide area-discoveries-card">
 
-        <div class="eyebrow">Section 3 · What changes from place to place</div>
+        <div class="eyebrow">Section 3 · Study areas at a glance</div>
 
         <h2>Some areas stand out more than others</h2>
 
         <p class="section-lead">Some areas have more buildings needing review. Others have a larger proportion of their checked buildings marked red. Looking at both helps us decide where to focus attention.</p>
 
-        <div id="story-area-findings" class="story-area-findings"></div>
+        <div id="story-area-findings" class="analysis-source-table-wrap"></div>
 
       </article>
 
@@ -99,6 +100,7 @@
         <p><i class="building-other-swatch"></i><strong>Orange buildings</strong> were checked but do not overlap that land. Even a small overlap is enough to mark a building red. This does not mean the whole building will flood.</p>
 
         <p class="table-note">Orange does not mean safe. These checks do not show confirmed damage, water depth or how much water a drain can carry.</p>
+        <p class="summary-map-reference"><strong>In Part B:</strong> select a study area and use Flood concern, Inspection priority, Screened buildings and River flood concern areas to inspect the findings. Rivers and drains, Dams and water bodies, Distance from rivers (3 bands) and South C drainage area show the drainage context. Click buildings for their screening results and warning triangles for dated road reports.</p>
 
       </article>
 
@@ -170,7 +172,7 @@
 
         <p class="section-lead">Behind each flooded building are everyday needs: a place to sleep, goods to sell, clean water and a safe route to school or work. The reports below show what happened in past rainy seasons.</p>
 
-        <div id="impact-history" class="history-timeline"></div>
+        <details class="summary-details"><summary>Historical reports · 1997–2026 and sources</summary><div id="impact-history" class="history-timeline"></div></details>
 
       </article>
 
@@ -185,6 +187,15 @@
         <p id="rainfall-amount-detail"></p><p id="rainfall-preparation"></p>
 
         <div id="rainfall-amount-source" class="source-links"></div>
+        <p class="outlook-narrative">This weather outlook helps us prepare. It comes from weather agencies and is separate from our building checks.</p>
+
+        <p class="outlook-narrative" id="forecast-summary">Loading the 2026 rainfall outlook…</p>
+
+        <div class="outlook-grid" id="outlook-facts"></div>
+
+        <p class="regional-note" id="regional-context"></p>
+
+
 
       </article>
 
@@ -198,7 +209,7 @@
 
         <p class="section-lead">Past floods disrupted Lang’ata, Mombasa, Mbagathi, Jogoo, Enterprise and Lunga Lunga roads. Check drainage and low crossings along these routes before heavy rain. The markers show places along the reported roads; exact flooded sections still need to be checked.</p>
 
-        <div id="story-road-watch" class="story-area-findings"></div>
+        <details class="summary-details"><summary>Reported locations, dates and links to the map</summary><div id="story-road-watch" class="story-area-findings"></div></details>
 
         <p class="table-note">Pulsing markers highlight places to inspect. Road reports are dated; locations are approximate.</p>
 
@@ -224,37 +235,9 @@
 
 
 
-      <article class="story-card wide history-card">
-
-        <div class="section-heading"><div><div class="eyebrow">Section 10 · What evidence backs this up</div><h2>The history behind the analysis</h2></div></div>
-
-        <p class="section-lead">We bring together maps of the land, rivers, drains and buildings with past rainfall and water records. The dates below show how old each part of that evidence is.</p>
-
-        <div class="history-timeline" id="history-timeline"></div>
-
-      </article>
-
-
-
-      <article class="story-card wide outlook-card">
-
-        <div class="section-heading"><div><div class="eyebrow">Section 11 · The seasonal outlook</div><h2>The 2026 short-rains outlook</h2></div></div>
-
-        <p class="outlook-narrative">This weather outlook helps us prepare. It comes from weather agencies and is separate from our building checks.</p>
-
-        <p class="outlook-narrative" id="forecast-summary">Loading the 2026 rainfall outlook…</p>
-
-        <div class="outlook-grid" id="outlook-facts"></div>
-
-        <p class="regional-note" id="regional-context"></p>
-
-      </article>
-
-
-
       <article class="story-card wide source-card">
 
-        <div class="eyebrow">Section 12 · Sources and dates</div>
+        <div class="eyebrow">Section 10 · Sources and dates</div>
 
         <h2>Where the story comes from</h2>
 
@@ -276,6 +259,7 @@
           </table>
         </div>
         <p class="analysis-source-note">Terrain-derived layers and concern scores are outputs of this analysis. Historical water occurrence does not show individual flood events, and mapped buildings do not count residents. OpenStreetMap data is credited to OpenStreetMap contributors under ODbL 1.0.</p>
+        <details class="summary-details"><summary>Evidence periods and interpretation</summary><div class="history-timeline" id="history-timeline"></div></details>
         <h3>Weather outlook and supporting reports</h3>
         <div id="forecast-sources" class="source-links"></div>
 
@@ -446,5 +430,6 @@
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@watergis/maplibre-gl-terradraw@1.0.1/dist/maplibre-gl-terradraw.umd.js"></script>
   <script src="app.js"></script>
+  <script src="story.js"></script>
 </body>
 </html>

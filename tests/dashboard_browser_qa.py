@@ -89,14 +89,128 @@ def run():
             while not evaluate(expression):
                 if time.monotonic() > deadline:
                     state = evaluate("typeof map === 'undefined' || !map ? null : ({missing:Object.values(layerIds).flat().filter(id=>!map.getLayer(id)),styleLoaded:map.isStyleLoaded(),sources:Object.fromEntries(Object.keys(map.getStyle().sources).map(id=>[id,map.isSourceLoaded(id)]))})")
-                    raise AssertionError(f"Timed out: {expression}; state: {state}; errors: {errors[-3:]}")
+                    images=evaluate("[...document.images].filter(img=>!img.complete||!img.naturalWidth).map(img=>({src:img.src,complete:img.complete,width:img.naturalWidth}))")
+                    raise AssertionError(f"Timed out: {expression}; state: {state}; images: {images}; errors: {errors[-3:]}")
                 time.sleep(.2)
 
         call("Runtime.enable")
         call("Page.enable")
         call("Page.navigate", {"url": f"http://127.0.0.1:{server.server_port}/"})
         wait_for("typeof metrics !== 'undefined' && !!metrics")
-        assert evaluate("document.querySelector('h1').textContent") == 'Understanding flood risk in Nairobi'
+        assert evaluate("document.querySelector('h1').textContent") == 'Nairobi flood preparedness at a glance'
+        if '--capture-story-assets' in sys.argv:
+            output = ROOT / 'maplibre_dashboard/data/story'
+            output.mkdir(parents=True, exist_ok=True)
+            call('Emulation.setDeviceMetricsOverride',{'width':1600,'height':1100,'deviceScaleFactor':2,'mobile':False})
+            evaluate("const captureStyle=document.createElement('style');captureStyle.textContent='.dashboard-shell{height:660px}.map-panel-title,.map-badge,.map-key,.maplibregl-control-container{display:none!important}';document.head.append(captureStyle)")
+            evaluate("applyTheme('light', false); switchView('dashboard')")
+            wait_for("!!map && Object.values(layerIds).flat().every(id=>!!map.getLayer(id))")
+            def layers(keys):
+                evaluate(f"document.querySelectorAll('[data-layer-key]').forEach(input=>{{input.checked={json.dumps(keys)}.includes(input.dataset.layerKey);input.dispatchEvent(new Event('change',{{bubbles:true}}));}})")
+            def capture(name, selector):
+                evaluate(f"document.querySelector({json.dumps(selector)}).scrollIntoView({{block:'center'}})")
+                time.sleep(.4)
+                box = evaluate(f"(()=>{{const r=document.querySelector({json.dumps(selector)}).getBoundingClientRect();return {{x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height,scale:1}}}})()")
+                data=call('Page.captureScreenshot',{'format':'png','captureBeyondViewport':True,'clip':box})['data']
+                (output / f'{name}.png').write_bytes(base64.b64decode(data))
+                print(f'Captured {name}', flush=True)
+            base=['analysis_rivers','drainage','dams','inspection','locations']
+            scenarios=[('areas','all',base),('buildings','Gikomba Market',['buildings','drainage','locations']),('priorities','Kibera',['priority','buildings','drainage','inspection','locations']),('roads','South B',['analysis_rivers','drainage','inspection','locations']),('methods','South C',['catchment','buildings','analysis_rivers','inspection','locations']),('concern','South B',['hazard','drainage','inspection','locations']),('priority','South B',['priority','drainage','inspection','locations'])]
+            for name, area, keys in scenarios:
+                if '--asset=areas' in sys.argv and name!='areas':
+                    continue
+                layers(keys)
+                evaluate(f"selectArea({json.dumps(area)}); map.stop(); map.resize(); true")
+                if area=='all':
+                    evaluate('map.fitBounds([[36.75,-1.335],[36.925,-1.235]],{padding:45,duration:0}); true')
+                else:
+                    evaluate(f"map.fitBounds(featureBounds(inspectionData.features.find(f=>f.properties.name==={json.dumps(area)})),{{padding:55,maxZoom:14,duration:0}}); true")
+                if name=='buildings':
+                    evaluate('map.jumpTo({center:[36.839,-1.287],zoom:16}); true')
+                wait_for("!map.isMoving() && map.areTilesLoaded()",timeout=90)
+                time.sleep(.7)
+                capture(name,'.map-panel')
+            if '--asset=areas' in sys.argv:
+                return
+            evaluate("switchView('intro'); document.querySelectorAll('#intro-view details').forEach(d=>d.open=true)")
+            capture('comparison','#story-area-findings')
+            capture('history','#impact-history')
+            capture('outlook','#outlook-facts')
+            capture('sources','.analysis-source-table-wrap:has(.analysis-source-table):not(#story-area-findings)')
+            print('PASS captured 11 high-resolution dashboard views',flush=True)
+            return
+        if '--interactive-story' in sys.argv:
+            print('Checking interactive story assets',flush=True)
+            wait_for("document.querySelectorAll('.story-chapter').length===10 && document.querySelectorAll('[data-story-area]').length===6")
+            evaluate("document.querySelectorAll('.story-chapter-visual img,.story-swipe img').forEach(img=>img.loading='eager')")
+            wait_for("[...document.querySelectorAll('.story-chapter-visual img,.story-swipe img')].every(img=>img.complete&&img.naturalWidth>0)")
+            print('Screenshots loaded; checking chapter navigation',flush=True)
+            evaluate("document.querySelector('[data-chapter=\"3\"]').click()")
+            wait_for("document.querySelector('[data-chapter=\"3\"]').getAttribute('aria-current')==='step'")
+            evaluate("document.querySelector('#chapter-reading [data-enlarge]').click()")
+            assert evaluate("document.querySelector('#story-image-dialog').open")
+            call('Input.dispatchKeyEvent', {'type':'keyDown','key':'Escape','code':'Escape','windowsVirtualKeyCode':27})
+            call('Input.dispatchKeyEvent', {'type':'keyUp','key':'Escape','code':'Escape','windowsVirtualKeyCode':27})
+            wait_for("!document.querySelector('#story-image-dialog').open")
+            evaluate("const slider=document.querySelector('#story-swipe-range');slider.value=25;slider.dispatchEvent(new Event('input',{bubbles:true}))")
+            assert evaluate("getComputedStyle(document.querySelector('.story-swipe-overlay')).clipPath")=='inset(0px 75% 0px 0px)'
+            evaluate("document.querySelector('[data-chapter=\"1\"]').click()")
+            wait_for("Math.abs(document.querySelector('#chapter-findings').getBoundingClientRect().top-document.querySelector('#intro-view').getBoundingClientRect().top-90)<3")
+            rect=evaluate("(()=>{const r=document.querySelector('.story-swipe-images').getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}})()")
+            y=rect['y']+rect['height']/2
+            call('Input.dispatchMouseEvent',{'type':'mousePressed','x':rect['x']+rect['width']*.3,'y':y,'button':'left','buttons':1,'clickCount':1})
+            call('Input.dispatchMouseEvent',{'type':'mouseMoved','x':rect['x']+rect['width']*.75,'y':y,'button':'left','buttons':1})
+            call('Input.dispatchMouseEvent',{'type':'mouseReleased','x':rect['x']+rect['width']*.75,'y':y,'button':'left','clickCount':1})
+            assert evaluate("Number(document.querySelector('#story-swipe-range').value)")==75
+            call('Input.dispatchKeyEvent',{'type':'keyDown','key':'ArrowLeft','code':'ArrowLeft','windowsVirtualKeyCode':37})
+            call('Input.dispatchKeyEvent',{'type':'keyUp','key':'ArrowLeft','code':'ArrowLeft','windowsVirtualKeyCode':37})
+            assert evaluate("Number(document.querySelector('#story-swipe-range').value)")==74
+            (ROOT/'exports/dashboard_swipe_desktop.png').write_bytes(base64.b64decode(call('Page.captureScreenshot',{'format':'png'})['data']))
+            evaluate("document.querySelector('#chapter-findings [data-enlarge]').click()")
+            assert evaluate("document.querySelector('#story-image-dialog .story-swipe')!==null && document.querySelector('#story-image-dialog').open")
+            evaluate("document.querySelector('#story-swipe-fullscreen').focus()")
+            call('Input.dispatchKeyEvent',{'type':'keyDown','key':'ArrowRight','code':'ArrowRight','windowsVirtualKeyCode':39})
+            call('Input.dispatchKeyEvent',{'type':'keyUp','key':'ArrowRight','code':'ArrowRight','windowsVirtualKeyCode':39})
+            assert evaluate("Number(document.querySelector('#story-swipe-fullscreen').value)")==75
+            evaluate("document.querySelector('.story-dialog-close').click()")
+            print('Chapter navigation, enlargement and slider passed; checking map preset',flush=True)
+            evaluate("document.querySelector('#chapter-methods [data-explore-chapter]').click()")
+            wait_for("!!map&&!!map.getLayer('building-fill')")
+            assert evaluate('selectedArea')=='South C'
+            assert evaluate("map.getLayoutProperty('catchment-fill','visibility')")=='visible'
+            assert evaluate("map.getLayoutProperty('hazard-layer','visibility')")=='none'
+            assert evaluate("map.getFilter('building-fill')[2]")=='South C'
+            evaluate("document.querySelector('#return-to-story').click()")
+            wait_for("document.querySelector('[data-chapter=\"8\"]').getAttribute('aria-current')==='step'")
+            wait_for("Math.abs(document.querySelector('#chapter-methods').getBoundingClientRect().top-document.querySelector('#intro-view').getBoundingClientRect().top-90)<3")
+            assert evaluate("document.querySelector('#dashboard-view').hidden")
+            (ROOT/'exports/dashboard_interactive_story_desktop.png').write_bytes(base64.b64decode(call('Page.captureScreenshot',{'format':'png'})['data']))
+            call('Emulation.setDeviceMetricsOverride',{'width':390,'height':844,'deviceScaleFactor':1,'mobile':True})
+            evaluate("document.querySelector('[data-chapter=\"3\"]').click()")
+            wait_for("document.querySelector('[data-chapter=\"3\"]').getAttribute('aria-current')==='step'")
+            wait_for("Math.abs(document.querySelector('#chapter-reading').getBoundingClientRect().top-document.querySelector('#intro-view').getBoundingClientRect().top-90)<3")
+            assert evaluate("document.documentElement.scrollWidth<=390")
+            assert evaluate("document.querySelector('.topbar nav').getBoundingClientRect().right<=390")
+            assert evaluate("(()=>{const r=document.querySelector('[data-chapter=\"3\"]').getBoundingClientRect();return r.left>=0&&r.right<=390})()")
+            assert evaluate("getComputedStyle(document.querySelector('.story-chapter-visual')).position")=='static'
+            (ROOT/'exports/dashboard_interactive_story_mobile.png').write_bytes(base64.b64decode(call('Page.captureScreenshot',{'format':'png'})['data']))
+            evaluate("document.querySelector('#chapter-reading [data-explore-chapter]').click()")
+            assert evaluate("getComputedStyle(document.querySelector('#return-to-story')).display")!='none'
+            evaluate("document.querySelector('#return-to-story').click()")
+            wait_for("!document.querySelector('#intro-view').hidden")
+            evaluate("document.querySelector('[data-chapter=\"1\"]').click()")
+            wait_for("Math.abs(document.querySelector('#chapter-findings').getBoundingClientRect().top-document.querySelector('#intro-view').getBoundingClientRect().top-90)<3")
+            evaluate("document.querySelector('.story-swipe-images').scrollIntoView({block:'center',behavior:'instant'})")
+            rect=evaluate("(()=>{const r=document.querySelector('.story-swipe-images').getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height}})()")
+            for event_type,share in [('touchStart',.45),('touchMove',.65)]:
+                call('Input.dispatchTouchEvent',{'type':event_type,'touchPoints':[{'x':rect['x']+rect['width']*share,'y':rect['y']+rect['height']/2,'id':1}]})
+            call('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
+            assert evaluate("Number(document.querySelector('#story-swipe-range').value)")==65
+            (ROOT/'exports/dashboard_swipe_mobile.png').write_bytes(base64.b64decode(call('Page.captureScreenshot',{'format':'png'})['data']))
+            if errors:
+                raise AssertionError(errors)
+            print('PASS ten chapter visuals, high-resolution screenshots, mouse/touch/keyboard swipe, fullscreen comparison, chapter navigation, map presets and mobile layout',flush=True)
+            return
         if "--story-only" in sys.argv:
             wait_for("document.querySelectorAll('[data-story-area]').length === 6")
             assert evaluate("document.querySelector('#intro-discovery-summary').textContent.includes('10,641')")
